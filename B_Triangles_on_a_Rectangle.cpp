@@ -62,26 +62,49 @@ int main()
     cin >> tc;
     while(tc--)
     {
+        ll w,h;
+        cin>> w >> h;
+        vector<ll> v1;
         ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin >> n;
+        for(ll i=0;i<n;i++) 
         {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            ll x;
+            cin >> x;
+            v1.pb(x);
         }
+        vector<ll> v2;
+        cin >> n;
+        for(ll i=0;i<n;i++)
+        {
+            ll x;
+            cin >> x;
+            v2.pb(x);
+        }
+        vector<ll> v3;
+        cin >> n;
+        for(ll i=0;i<n;i++)
+        {
+            ll x;
+            cin >> x;
+            v3.pb(x);
+        }
+        vector<ll> v4;
+        cin >> n;
+        for(ll i=0;i<n;i++)
+        {
+            ll x;
+            cin >> x;
+            v4.pb(x);
+        }
+
+        ll a1,a2,a3,a4;
+        a1=(v1.back()-v1[0])*h;
+        a2=(v2.back()-v2[0])*h;
+        a3=(v3.back()-v3[0])*w;
+        a4=(v4.back()-v4[0])*w;
+        cout << max(a1,max(a2,max(a3,a4))) << endl;
+
     }
     
     //---------------------------------

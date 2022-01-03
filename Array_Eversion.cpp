@@ -59,29 +59,30 @@ int main()
     boost
     //---------------------------------
     ll tc;
-    cin >> tc;
+    cin >> tc ;
     while(tc--)
     {
         ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin >> n;
+        vector<ll> a(n);
+        for(auto &i: a) cin >> i;
+        vector<ll> b;
+        b=a;
+        rsrt(b);
+        ll cnt=0,tm=0;
+        for(int i=n-1;i>=0;i--)
         {
-            if(s[n-1]==c) 
+            if(a[i]==b[0]) break;
+            else 
             {
-                cout << 1 << endl << n << endl;
+                if(a[i]>tm)
+                {
+                    cnt++;
+                    tm=a[i];
+                }
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
         }
+        cout << cnt << endl;
     }
     
     //---------------------------------

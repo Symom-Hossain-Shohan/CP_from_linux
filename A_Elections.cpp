@@ -60,29 +60,24 @@ int main()
     //---------------------------------
     ll tc;
     cin >> tc;
-    while(tc--)
+    while (tc--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        ll a,b,c;
+        cin >> a >> b >> c;
+        if(a==0 and b==0 and c==0) cout << "1 1 1\n";
+        else 
         {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            ll x,y,z;
+            if(a>b and a>c) x=0;
+            else x=max(b,c)+1-a;
+            if(b>a and b>c) y=0;
+            else y=max(a,c)+1-b;
+            if(c>a and c>b) z=0;
+            else z=max(a,b)+1-c;
+            cout << x<< ' ' << y << ' ' << z << endl;
         }
     }
+    
     
     //---------------------------------
     

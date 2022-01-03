@@ -45,8 +45,28 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 }
 
 //code goes from here...
+ll dp[5005],width[5005],hight[5005],next_pos[5005],n;
 
 
+ll check(ll pos)
+{
+    if(dp[pos]!=-1) return dp[pos];
+
+    ll ans=1;
+    for(int i=0;i<n;i++)
+    {
+        if(width[i]>width[pos] and hight[i]>hight[pos])
+        {
+            ll tmp=check(i)+1;
+            if(tmp>ans)
+            {
+                ans=tmp;
+                next_pos[pos]=i;
+            }
+        }
+    }
+    return dp[pos]=ans;
+}
 
 int main()
 {
@@ -58,31 +78,34 @@ int main()
 
     boost
     //---------------------------------
-    ll tc;
-    cin >> tc;
-    while(tc--)
+    ll w,h;
+    cin >> n >> w >> h;
+    mem(dp,-1);
+
+    for(int i=0;i<n;i++) cin >> width[i] >> hight[i];
+
+    ll ans=0,tmp=0,pos=0;
+
+    for(int i=0;i<n;i++)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        if(width[i]<=w or hight[i]<=h) continue;
+        tmp=check(i);
+
+        if(tmp>ans)
         {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            ans=tmp;
+            pos=i;
         }
     }
+
+    cout << ans << endl;
+    while(ans--)
+    {
+         cout << pos+1 << ' ';
+         pos=next_pos[pos];
+    }
+    cout << endl;
+
     
     //---------------------------------
     

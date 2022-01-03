@@ -63,24 +63,34 @@ int main()
     while(tc--)
     {
         ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin >> n;
+        map<ll,ll> m;
+        vector<ll> v(n);
+
+        ll sum=0;
+        for(auto &i: v)
         {
-            if(s[n-1]==c) 
+            cin >> i;
+            sum+=i;
+            m[i]++;
+        }
+
+        sum*=2;
+        if(sum%n!=0) cout << 0 <<  endl;
+        else 
+        {
+            ll ans=0;
+            sum/=n;
+            for(int i=0;i<n;i++)
             {
-                cout << 1 << endl << n << endl;
+                ll j=sum-v[i];
+                if(m[j])
+                {
+                    m[v[i]]--;
+                    ans+=m[j];
+                }
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            cout << ans << endl;
         }
     }
     

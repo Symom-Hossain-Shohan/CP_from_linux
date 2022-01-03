@@ -63,24 +63,21 @@ int main()
     while(tc--)
     {
         ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin >> n;
+        if(n%2==0)
         {
-            if(s[n-1]==c) 
+            cout << n-3 << ' ' << 2 << ' ' <<1 << endl;
+        }
+        else 
+        {
+            for(ll i=2;i<=n-1;i++)
             {
-                cout << 1 << endl << n << endl;
+                if(__gcd(i,n-1-i)==1)
+                {
+                    cout << n-1-i << ' ' << i << ' ' << 1 << endl;
+                    break;
+                }
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
         }
     }
     

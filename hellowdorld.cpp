@@ -58,9 +58,11 @@ int main()
 
     boost
     //---------------------------------
-    ll n=pow(105,2)+pow(105,4)+pow(105,5)+pow(105,9);
-    cout << n%mod << endl;
-    
+    set<ll> s1={1,2,3,4},s2={2,3};
+    set<ll> r;
+    set<ll> :: iterator it;
+    set_difference(s1.begin(),s1.end(),s2.begin(),s2.end(),inserter(r,r.end()));
+    cout << r.size() << endl;
     //---------------------------------
     
     return 0;

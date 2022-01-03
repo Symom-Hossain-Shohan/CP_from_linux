@@ -45,7 +45,14 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 }
 
 //code goes from here...
-
+bool is_prime(ll n)
+{
+    for(int i=2;i*i<=n;i++)
+    {
+        if(n%i==0) return false;
+    }
+    return true;
+}
 
 
 int main()
@@ -63,25 +70,34 @@ int main()
     while(tc--)
     {
         ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin >> n;
+        vector<ll> v(n);
+        ll sum=0;
+        for(auto &i: v) cin >> i,sum+=i;
+
+        if(is_prime(sum))
         {
-            if(s[n-1]==c) 
+            cout << n-1 << endl;
+            for(int i=1;i<=n;i++)
             {
-                cout << 1 << endl << n << endl;
+                if(is_prime(sum-v[i-1])==false)
+                {
+                    for(int j=1;j<=n;j++)
+                    {
+                        if(j==i) continue;
+                        else cout << j << ' ';
+                    }
+                    cout << endl;
+                    break;
+                }
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
-        }
+        }   
+        else 
+        {
+            cout << n << endl;
+            for(int i=1;i<=n;i++) cout << i << ' ';
+            cout << endl;
+        }     
     }
     
     //---------------------------------

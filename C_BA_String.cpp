@@ -62,26 +62,71 @@ int main()
     cin >> tc;
     while(tc--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
+        ll n,k,x;
+        cin >> n >> k >> x;
         string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin>> s;
+        ll ans=1,pos=0,cnt=0;
+
+        //Finiding the smallest position from where we have to print b
+        vector<ll> v;
+
+        for(int i=s.size()-1;i>=0;i--)
         {
-            if(s[n-1]==c) 
+            if(s[i]=='*')cnt++;
+            else 
             {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+                if(cnt!=0)
+                {
+                    if(ans>x/(cnt*k+1))
+                    {
+                        pos=i;
+                        cnt=0;
+                        v.pb(0);
+                        break;
+                    }
+                    ans=ans*(cnt*k+1);
+                    v.pb(cnt*k);
+                }
+                
+                cnt=0;
+                
+            } 
         }
+
+        if(cnt!=0)
+        {
+            v.pb(cnt*k);
+            ans=ans*(cnt*k+1);
+        }
+
+        reverse(all(v));
+
+        //priniting all 'a' before pos
+        for(int i=0;i<pos;i++) if(s[i]=='a') cout << 'a';
+        
+        int check=0;
+        for(int i=pos,j=0;i<(int)s.size();i++)
+        {
+            if(s[i]=='a') 
+            {
+                cout << 'a';
+                check=0;
+                continue;
+            }
+            if(check ) continue;
+            check=1;
+            ans/=(v[j]+1);
+            ll t=x/ans;
+            if(x%ans==0) t--;
+            j++;
+            for(ll j=1;j<=t;j++) cout << 'b';
+            x-=ans*t;
+
+        }
+        cout << endl;
+
+
     }
     
     //---------------------------------

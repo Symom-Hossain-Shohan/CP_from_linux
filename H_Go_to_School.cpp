@@ -58,31 +58,18 @@ int main()
 
     boost
     //---------------------------------
-    ll tc;
-    cin >> tc;
-    while(tc--)
+    ll n;
+    cin >> n;
+    vector<pair<ll,ll>> v;
+    for(ll i=1;i<=n;i++)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
-        {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
-        }
+        ll x;
+        cin >> x;
+        v.pb({x,i});
     }
+    srt(v);
+    for(auto i: v) cout << i.second << ' ';
+    cout << endl;
     
     //---------------------------------
     

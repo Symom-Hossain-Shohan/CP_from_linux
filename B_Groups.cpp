@@ -63,25 +63,39 @@ int main()
     while(tc--)
     {
         ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin >> n;
+        int ar[n][5];
+        for(int i=0;i<n;i++) for(int j=0;j<5;j++) cin >> ar[i][j];
+        
+        bool ok=false;
+        for(int i=0;i<5;i++)
         {
-            if(s[n-1]==c) 
+            for(int j=i+1;j<5;j++)
             {
-                cout << 1 << endl << n << endl;
+                ll cnt=0,cnt1=0;
+                for(int k=0;k<n;k++)
+                {
+                    if(ar[k][i]) cnt++;
+                    if(ar[k][j]) cnt1++;
+                }
+                if(cnt>=n/2 and cnt1>=n/2)
+                {
+                    ll cnt=0;
+                    for(int k=0;k<n;k++)
+                    {
+                        if(ar[k][i]==1 or ar[k][j]==1) cnt++;
+                    }
+                    if(cnt==n) 
+                    {
+                        ok=true;
+                        break;
+                    }
+                }
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            if(ok) break;
         }
+        if(ok) cout << "YES\n";
+        else cout << "NO\n";
     }
     
     //---------------------------------

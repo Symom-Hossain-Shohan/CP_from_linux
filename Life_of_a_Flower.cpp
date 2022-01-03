@@ -63,25 +63,33 @@ int main()
     while(tc--)
     {
         ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin >> n;
+        
+        int ar[n];
+        for(int i=0;i<n;i++) cin >> ar[i];
+        int h=1;
+        int zero =0  , one=0;
+        for(int i=0;i<n;i++)
         {
-            if(s[n-1]==c) 
+            if(ar[i]==0)
             {
-                cout << 1 << endl << n << endl;
+                zero++;
+                if(one) h+=(one-1)*5+1;
+                one=0;
+                if(zero>=2)
+                {
+                    h=-1;
+                    break;
+                }
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
+            else 
             {
-                cout << 1 << endl << n-1 << endl;
+                zero=0;
+                one++;
             }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
         }
+        if(one) h+=(one-1)*5+1;
+        cout << h << endl;
     }
     
     //---------------------------------

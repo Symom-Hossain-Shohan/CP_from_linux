@@ -58,31 +58,46 @@ int main()
 
     boost
     //---------------------------------
-    ll tc;
-    cin >> tc;
-    while(tc--)
+    ll r,c;
+    cin >> r >> c;
+    int i=0;
+    bool ok=true;
+    while(r--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
         string s;
         cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        for(int j=0;j<c;j++)
         {
-            if(s[n-1]==c) 
+            if(s[j]=='#')
             {
-                cout << 1 << endl << n << endl;
+                if(j<i)
+                {
+                    ok=false;
+                    //cout << "No " << r << endl; 
+                    break;
+                }
+                for(;j<c;j++)
+                {
+                    if(s[j]=='.') break;
+                }
+                i=j-1;
+                //cout << j << endl;
+                for(;j<c;j++)
+                {
+                    if(s[j]=='#')
+                    {
+                        ok=false;
+                        //cout << "No " << r << endl;
+                        break;
+                    }
+                }
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            
+            
         }
-    }
+    }  
+    if(ok) cout << "Possible\n";
+    else cout << "Impossible\n"; 
     
     //---------------------------------
     

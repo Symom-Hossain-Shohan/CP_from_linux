@@ -45,7 +45,10 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 }
 
 //code goes from here...
-
+ll lcm(ll a,ll b)
+{
+    return (a*b)/__gcd(a,b);
+}
 
 
 int main()
@@ -63,27 +66,23 @@ int main()
     while(tc--)
     {
         ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin >> n;
+        ll l=1;
+        bool ok=false;
+        for(ll i=1;i<=n;i++)
         {
-            if(s[n-1]==c) 
+            ll x;
+            cin >> x;
+            l=lcm(l,i+1);
+            if(x%l==0)
             {
-                cout << 1 << endl << n << endl;
+                ok=true;
+                //break;
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
         }
+        if(ok) cout << "NO\n";
+        else cout << "YES\n";
     }
-    
     //---------------------------------
     
     return 0;

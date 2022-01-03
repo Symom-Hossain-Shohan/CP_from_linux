@@ -58,32 +58,22 @@ int main()
 
     boost
     //---------------------------------
-    ll tc;
-    cin >> tc;
-    while(tc--)
-    {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
-        {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
-        }
-    }
+    ll n,m;
+    cin >> n >> m;
     
+    vector<int> v;int x=(m+1)/2-1,y=(m+1)/2+1;
+    for(int i=1;i<=m;i++)
+    {
+        if(i==1) v.pb((m+1)/2);
+        else if(i%2==0) v.pb(x),x--;
+        else v.pb(y),y++;
+    }
+
+    for(int i=1;i<=n;i++)
+    {
+        if(i%m==0) cout << v[m-1] << endl;
+        else cout << v[i%m-1] << endl;
+    }
     //---------------------------------
     
     return 0;

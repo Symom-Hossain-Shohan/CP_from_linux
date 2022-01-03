@@ -58,31 +58,20 @@ int main()
 
     boost
     //---------------------------------
-    ll tc;
-    cin >> tc;
-    while(tc--)
+    int n;
+    cin >> n;
+    double l;
+    cin >> l;
+    vector<double> v(n);
+    for(auto &i: v) cin >> i;
+    srt(v);
+    double ans=v[0]-0;
+    for(int i=1;i<n;i++)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
-        {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
-        }
+        ans=max(ans,(v[i]-v[i-1])/2.0);
     }
+    ans=max(ans,l-v[n-1]);
+    cout <<setprecision(10) << fixed << ans << endl;
     
     //---------------------------------
     

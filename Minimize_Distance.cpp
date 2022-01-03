@@ -62,25 +62,27 @@ int main()
     cin >> tc;
     while(tc--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        ll n,k;
+        cin>> n >> k;
+        vector<ll> neg,pos;
+
+        for(ll i=0;i<n;i++)
         {
-            if(s[n-1]==c) 
+            ll x;
+            cin >> x;
+            if(x<0) neg.pb(-x);
+            else pos.pb(x);
+        }
+
+        if(pos.size()>0 and neg.size()>0)
+        {
+            if(pos.back()>neg.back()) swap(pos,neg);
+            ll a1=0,a2=0;
+            for(ll i=(k-1,(ll)pos.size()-1);i<pos.size()-1;i+=k)
             {
-                cout << 1 << endl << n << endl;
+                a1+=2*pos[i];
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            a1+=
         }
     }
     

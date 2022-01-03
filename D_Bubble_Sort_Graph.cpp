@@ -58,29 +58,29 @@ int main()
 
     boost
     //---------------------------------
-    ll tc;
-    cin >> tc;
-    while(tc--)
+    ll n;
+    cin >> n;
+    vector<ll> v(n);
+    for(auto &i: v) cin >> i;
+    //for(auto i: v) cout << i << ' ';
+
+    vector<ll> dp(n+1,INT_MAX);
+    dp[0]=INT_MIN;
+
+    for(int i=0;i<n;i++)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        int ix=upper_bound(all(dp),v[i])-dp.begin();
+        cout << ix << endl;
+        dp[ix]=v[i];
+    }
+    for(int i=0;i<n;i++) cout << dp[i] << ' ';
+    cout  << endl;
+    for(int i=n;i>=0;i--) 
+    {
+        if(dp[i]!=INT_MAX) 
         {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            cout << i << endl;
+            break;
         }
     }
     

@@ -63,26 +63,22 @@ int main()
     while(tc--)
     {
         ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin >> n;
+        string a,b;
+        cin >> a >> b;
+        bool ok=true;
+        for(int i=0;i<n;i++)
         {
-            if(s[n-1]==c) 
+            if(a[i]=='1' and b[i]=='1')
             {
-                cout << 1 << endl << n << endl;
+                ok=false;
+                break;
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
         }
-    }
+
+        if(ok) cout << "YES\n";
+        else cout << "NO\n";
+    }   
     
     //---------------------------------
     

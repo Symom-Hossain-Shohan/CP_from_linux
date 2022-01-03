@@ -62,25 +62,88 @@ int main()
     cin >> tc;
     while(tc--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
         string s;
         cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        ll n;
+        n=stoll(s);
+        if(n%25==0) cout << 0 << endl;
+        else 
         {
-            if(s[n-1]==c) 
+            n=s.size();
+            int i=n-1;
+            ll cnt=0;
+            ll ans=n;
+            for(;i>=0;i--)
             {
-                cout << 1 << endl << n << endl;
+                if(s[i]=='5') break;
+                cnt++;
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
+
+            i--;
+            for(;i>=0;i--)
             {
-                cout << 1 << endl << n-1 << endl;
+                if(s[i]=='7')
+                {
+                    ans=min(ans,cnt);
+                    break;
+                }
+                cnt++;
             }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            
+            i=n-1,cnt=0;
+            for(;i>=0;i--)
+            {
+                if(s[i]=='0') break;
+                cnt++;
+            }
+            i--;
+            for(;i>=0;i--)
+            {
+                if(s[i]=='5')
+                {
+                    ans=min(ans,cnt);
+                    break;
+                }
+                cnt++;
+            }
+
+            i=n-1;
+            cnt=0;
+            for(;i>=0;i--)
+            {
+                if(s[i]=='5') break;
+                cnt++;
+            }
+            i--;
+            for(;i>=0;i--)
+            {
+                if(s[i]=='2')
+                {
+                    ans=min(ans,cnt);
+                    break;
+                }
+                cnt++;
+            }
+
+            i=n-1,cnt=0;
+            for(;i>=0;i--)
+            {
+                if(s[i]=='0') break;
+                cnt++;
+            }
+            i--;
+            for(;i>=0;i--)
+            {
+                if(s[i]=='0')
+                {
+                    ans=min(ans,cnt);
+                    break;
+                }
+                cnt++;
+            }
+
+            cout << ans << endl;
+            
         }
     }
     

@@ -62,25 +62,30 @@ int main()
     cin >> tc;
     while(tc--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        ll n,m;
+        cin>> n >> m;
+        int ar[n+1];
+        mem(ar,0);
+        for(int i=0;i<m;i++)
         {
-            if(s[n-1]==c) 
+            ll a,b,c;
+            cin >> a >> b >> c;
+            ar[b]++;
+        }
+
+        ll parent;
+        for(int i=1;i<=n;i++)
+        {
+            if(ar[i]==0)
             {
-                cout << 1 << endl << n << endl;
+                parent=i;
+                break;
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+        }
+        for(int i=1;i<=n;i++) 
+        {
+            if(i==parent) continue;
+            else cout << parent << ' ' << i << endl;
         }
     }
     

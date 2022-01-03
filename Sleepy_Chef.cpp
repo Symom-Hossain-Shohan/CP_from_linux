@@ -62,26 +62,19 @@ int main()
     cin >> tc;
     while(tc--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
+        ll n,k;
+        cin >> n >> k;
         string s;
         cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        int ans=0;
+        int cnt=0;
+        for(int i=0;i<n;i++)
         {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            if(s[i]=='0') cnt++;
+            else ans+=(cnt/k),cnt=0;
         }
+        ans+=cnt/k;
+        cout << ans << endl;
     }
     
     //---------------------------------

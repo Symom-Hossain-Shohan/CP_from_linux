@@ -58,30 +58,19 @@ int main()
 
     boost
     //---------------------------------
-    ll tc;
-    cin >> tc;
-    while(tc--)
+    ll n;
+    cin >> n;
+    vector<ll> price(n);
+    for(int i=0;i<n;i++) cin >> price[i];
+
+    ll q;
+    cin >> q;
+    srt(price);
+    while(q--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
-        {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
-        }
+        ll m;
+        cin >> m;
+        cout<< upper_bound(all(price),m)-price.begin() << endl;
     }
     
     //---------------------------------

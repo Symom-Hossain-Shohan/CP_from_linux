@@ -62,26 +62,11 @@ int main()
     cin >> tc;
     while(tc--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
-        {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
-        }
+        ll x,y,p,q;
+        cin >> x >> y >> p >> q;
+        if(x+p*10==y+q*10) cout << "Draw\n";
+        else if(x+p*10<y+q*10) cout << "Chef\n";
+        else cout << "Chefina\n";
     }
     
     //---------------------------------

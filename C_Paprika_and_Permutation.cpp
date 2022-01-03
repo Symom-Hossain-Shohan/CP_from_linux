@@ -63,25 +63,38 @@ int main()
     while(tc--)
     {
         ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        cin >> n;
+        vector<ll> v;
+        map<ll,ll> m;
+        for(int i=1;i<=n;i++)
         {
-            if(s[n-1]==c) 
+            ll x;
+            cin >> x;
+            if(x<=n)
             {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+                if(m[x]) v.pb(x);
+                else m[x]++;
+            } 
+            else v.pb(x);
         }
+        srt(v);
+        ll ans=0;
+        bool ok=true;
+        for(int i=1,j=0;i<=n;i++)
+        {
+            if(m[i]) continue;
+            else 
+            {
+                if(i<=(v[j]+1)/2-1) ans++,j++;
+                else 
+                {
+                    ok=false;
+                    break;
+                }
+            }
+        }
+        if(ok) cout << ans << endl;
+        else cout << -1 << endl;
     }
     
     //---------------------------------

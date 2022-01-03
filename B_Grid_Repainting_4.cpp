@@ -58,30 +58,41 @@ int main()
 
     boost
     //---------------------------------
-    ll tc;
-    cin >> tc;
-    while(tc--)
+    int r,c;
+    cin >> r>> c;
+    char mtx[r][c];
+    for(int i=0;i<r;i++)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        for(int j=0;j<c;j++)
         {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            cin >> mtx[i][j];
         }
+    }
+
+    map<char,ll> m;
+    for(int i=0;i<r;i++)
+    {
+        for(int j=0;j<c;j++)
+        {
+            if(mtx[i][j]=='.')
+            {
+                if(mtx[i-1][j]!='1' and mtx[i+1][j]!='1' and mtx[i][j-1]!='1' and mtx[i][j+1]!='1') mtx[i][j]='1';
+                else if(mtx[i-1][j]!='2' and mtx[i+1][j]!='2' and mtx[i][j-1]!='2' and mtx[i][j+1]!='2') mtx[i][j]='2';
+                else if(mtx[i-1][j]!='3' and mtx[i+1][j]!='3' and mtx[i][j-1]!='3' and mtx[i][j+1]!='3') mtx[i][j]='3';
+                else if(mtx[i-1][j]!='4' and mtx[i+1][j]!='4' and mtx[i][j-1]!='4' and mtx[i][j+1]!='4') mtx[i][j]='4';
+                else mtx[i][j]='5';                
+                
+                
+            }
+        }
+    }
+    for(int i=0;i<r;i++)
+    {
+        for(int j=0;j<c;j++)
+        {
+            cout << mtx[i][j];
+        }
+        cout << endl;
     }
     
     //---------------------------------

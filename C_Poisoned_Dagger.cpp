@@ -56,32 +56,32 @@ int main()
     //freopen("output.txt", "w", stdout);
 //#endif
 
-    boost
+    
     //---------------------------------
     ll tc;
     cin >> tc;
     while(tc--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        ll n,h;
+        cin >> n >> h;
+        
+        vector<ll> v(n);
+        for(auto &i: v) cin >> i;
+        ll l=0,r=1e18;
+        ll m ;
+        while(l<r-1)
         {
-            if(s[n-1]==c) 
+             m=(l+r)/2;
+            ll sum=m;
+            for(int i=0;i<n-1;i++)
             {
-                cout << 1 << endl << n << endl;
+                sum+=min(m,v[i+1]-v[i]);
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            if(sum>=h) r=m;
+            else l=m;
         }
+        cout << r << endl;
+
     }
     
     //---------------------------------

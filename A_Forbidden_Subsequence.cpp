@@ -62,25 +62,24 @@ int main()
     cin >> tc;
     while(tc--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        string a,b ;
+        cin >> a >> b;
+        map<char,ll> m;
+        for(ll i=0;i<(ll)a.size();i++) m[a[i]]++;
+        if(b=="abc" and m['a'] and m['b'] and m['c']) 
         {
-            if(s[n-1]==c) 
-            {
-                cout << 1 << endl << n << endl;
-            }
-            else if(s[n-1]!=c and s[n-2]==c) 
-            {
-                cout << 1 << endl << n-1 << endl;
-            }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
+            srt(a);
+            
+
+            for(int i=0;i<(int)a.size();i++) if(a[i]=='a') cout << a[i];
+            for(int i=0;i<(int)a.size();i++) if(a[i]=='c') cout << a[i];
+            for(int i=0;i<(int)a.size();i++) if(a[i]!='a' and a[i]!='c') cout << a[i];
+            cout << endl;
+        }
+        else 
+        {
+            srt(a);
+            cout << a << endl;
         }
     }
     

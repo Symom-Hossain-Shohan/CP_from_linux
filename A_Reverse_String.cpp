@@ -62,26 +62,36 @@ int main()
     cin >> tc;
     while(tc--)
     {
-        ll n;
-        char c;
-        cin >> n >> c;
-        string s;
-        cin >> s;
-        ll cnt=0;
-        for(int i=0;i<n;i++) if(s[i]==c) cnt++;
-        if(cnt==n) cout << 0 << endl;
-        else
+        string a,b;
+        cin >> a >> b;
+        bool ok=false;
+        for(int i=b.size()-1;i>=0;i--)
         {
-            if(s[n-1]==c) 
+            ll k=b.size()-1-i;
+            ll j=i+1,l=i-1;
+            bool okk=true;
+            while(k--)
             {
-                cout << 1 << endl << n << endl;
+                if(b[j]!=b[l])
+                {
+                    okk=false;
+                    break;
+                }
+                j++,l--;
             }
-            else if(s[n-1]!=c and s[n-2]==c) 
+            if(okk)
             {
-                cout << 1 << endl << n-1 << endl;
+                string tmp;
+                for(int j=0;j<=i;j++) tmp.pb(b[j]);
+                if(a.find(tmp)!=string::npos) 
+                {
+                    ok=true;
+                    break;
+                }
             }
-            else cout << 2 << endl << n-1 << ' ' << n << endl;
         }
+        if(ok) cout << "YES\n";
+        else cout << "NO\n";
     }
     
     //---------------------------------
