@@ -58,7 +58,24 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        ll n,k;
+        cin >> n >> k;
+        vector<ll> a(n),b(n);
+        for(auto &i :a) cin >> i;
+        for(auto &i: b) cin >> i;
+        vector<pair<ll,ll>> v;
+        for(int i=0;i<n;i++)  v.pb({a[i],b[i]});
+        srt(v);
+        for(int i=0;i<n;i++)
+        {
+            if(v[i].first<=k) k+=v[i].second;
+        }
+        cout << k << endl;
+    }
     
     //---------------------------------
     

@@ -45,8 +45,15 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 }
 
 //code goes from here...
-
-
+ 
+ll get_floor(ll a,ll b)
+{
+	ll k=a/b;
+	while(k*b>a)
+		k--;
+	return k;
+}
+ 
 
 int main()
 {
@@ -58,7 +65,30 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        ll n,k;
+        cin >> n >> k;
+        vector<ll> v(n),a(n);
+        for(auto &i: v)  cin >> i;
+        srt(v);
+
+        a=v;
+        for(ll i=1;i<n;i++) a[i]+=a[i-1];
+
+        ll ans=INTMAX_MAX;
+        for(int i=0;i<n;i++)
+        {
+            
+            ll x=v[0]-get_floor(k-a[n-i-1]+v[0],i+1);
+            
+            ans=min(ans,i+max(0ll,x));
+        }
+
+        cout << ans << endl;
+    }
     
     //---------------------------------
     

@@ -58,7 +58,44 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        ll n;
+        cin >> n;
+        vector<ll> time(n),health(n);
+        for(auto &i: time) cin >> i;
+        for(auto &i :health) cin >> i;
+
+        vector<pair<ll,ll>> v;
+        for(int i=0;i<n;i++)
+        {
+            v.pb({time[i]-health[i]+1,time[i]});
+        }
+        srt(v);
+        ll mx=v[0].second, mn=v[0].first;
+        ll ans=0;
+        for(int i=0;i<n;i++)
+        {
+            if(v[i].first<=mx)
+            {
+                mx=max(mx,v[i].second);
+
+            }
+            else 
+            {
+                ll x=mx-mn+1;
+                ans+=x*(x+1)/2;
+                mx=v[i].second;
+                mn=v[i].first;
+            }
+
+        }
+        ll x=mx-mn+1;
+        ans+=x*(x+1)/2;
+        cout << ans << endl;
+    }
     
     //---------------------------------
     

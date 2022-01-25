@@ -58,7 +58,51 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        ll n;
+        cin >> n;
+        vector<string> v;
+        string s;
+        map<string,ll> m1,m2;
+        bool ok=false;
+        for(int i=0;i<n;i++)
+        {
+            cin >> s;
+            m1[s]++;
+            v.pb(s);
+        }
+        for(int i=0;i<n;i++)
+        {
+            s=v[i];
+            reverse(all(s));
+            if(s==v[i]) 
+            {
+                ok=true;
+                break;
+            }
+            else
+            {
+                if(m1[s]>m2[s]) ok=true;
+                for(char ch='a';ch<='z';ch++)
+                {
+                    string S=ch+s;
+                    if(m1[S]>m2[S]) ok=true;
+                    
+                }
+                reverse(all(s));
+                s.pop_back();
+                reverse(all(s));
+                if(m1[s]>m2[s]) ok=true;
+            }
+            m2[v[i]]++;
+            if(ok) break;
+        }
+        if(ok) cout << "YES\n";
+        else cout << "NO\n";
+    }
     
     //---------------------------------
     

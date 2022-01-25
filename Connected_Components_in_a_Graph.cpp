@@ -45,8 +45,14 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 }
 
 //code goes from here...
+vector<ll> adj[100005];
+vector<bool> visited(100005,false);
 
-
+void dfs(ll source)
+{
+    visited[source]=1;
+    for(auto child: adj[source]) if(!visited[child]) dfs(child);
+}
 
 int main()
 {
@@ -58,7 +64,19 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll n,e;
+    cin >> n >> e;
+    for(int i=0;i<e;i++)
+    {
+        ll u,v;
+        cin >> u >> v;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
+
+    int nocc=0;
+    for(int i=1;i<=n;i++) if(!visited[i]) nocc++,dfs(i);
+    cout << nocc << endl;
     
     //---------------------------------
     

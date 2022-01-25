@@ -45,8 +45,27 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 }
 
 //code goes from here...
+vector<ll> adj[2005];
+vector<bool> visited(2005);
+vector<ll> color(2005);
 
-
+bool bipartite(int s,int c)
+{
+    visited[s]=true;
+    color[s]=c;
+    for(auto child: adj[s])
+    {
+        if(!visited[child])
+        {
+            if(bipartite(child,!c)==false) return false;
+        }
+        else 
+        {
+            if(color[s]==color[child]) return false;
+        }
+    }
+    return true;
+}
 
 int main()
 {
@@ -58,7 +77,31 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    for(int t=1;t<=tc;t++)
+    {
+        ll n,m;
+        cin >> n >> m;
+        for(int i=1;i<=n;i++) adj[i].clear(),visited[i]=false,color[i]=-1;
+        for(int i=1;i<=m;i++)
+        {
+            ll u,v;
+            cin >> u >> v;
+            adj[u].pb(v);
+            adj[v].pb(u);
+        }
+        bool ok=true;
+        for(int i=1;i<=n;i++)
+        {
+            if(!visited[i])
+            {
+                if(bipartite(i,0)==false) ok=false;
+            }
+        }
+        if(ok) cout << "Scenario #" << t << ":\n" << "No suspicious bugs found!\n";
+        else cout << "Scenario #" << t << ":\n" << "Suspicious bugs found!\n";
+    }
     
     //---------------------------------
     

@@ -51,14 +51,22 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 int main()
 {
 //#ifndef ONLINE_JUDGE
-    //freopen("input.txt", "r", stdin);
+    freopen("paint.in", "r", stdin);
     
-    //freopen("output.txt", "w", stdout);
+    freopen("paint.out", "w", stdout);
 //#endif
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll a,b,c,d;
+    cin>> a   >> b >> c >> d ;
+    int ar[101];
+    mem(ar,0);
+    for(int i=a;i<b;i++) ar[i]=1;
+    for(int i=c;i<d;i++) ar[i]=1;
+    int ans=0;
+    for(int i=0;i<=100;i++) ans+=ar[i];
+    cout << ans <<endl;
     
     //---------------------------------
     

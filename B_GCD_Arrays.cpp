@@ -58,7 +58,20 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        ll l,r,k;
+        cin>> l >> r >> k;
+        if(l==r and l!=1) cout << "YES\n";
+        else 
+        {
+            ll odd=(r-l)/2+(l%2==1 or r%2==1);
+            if(odd<=k) cout << "YES\n";
+            else cout << "NO\n";
+        }
+    }
     
     //---------------------------------
     

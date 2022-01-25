@@ -46,7 +46,20 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 
 //code goes from here...
 
-
+bool func(vector<ll> v, ll m)
+{
+    vector<ll> nw;
+    nw=v;
+    for(int i=(int)v.size()-1;i>=2;i--)
+    {
+        if(nw[i]<m) return false;
+        ll x=min(v[i],nw[i]-m)/3;
+        nw[i-1]+=x;
+        nw[i-2]+=2*x;
+    }
+    for(auto i: nw) if(i<m) return false;
+    return true;
+}
 
 int main()
 {
@@ -58,7 +71,34 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        ll n;
+        cin >> n;
+        vector<ll> v(n);
+        ll mx=0;
+        for(auto &i: v)
+        {
+            cin >> i;
+            mx=max(mx,i);
+        }
+
+        ll l=0,r=mx+1;
+        ll ans=0;
+        while(l<=r)
+        {
+            ll m=l+(r-l)/2;
+            if(func(v,m)) 
+            {
+                ans=m;
+                l=m+1;
+            }
+            else r=m-1;
+        }
+        cout << ans << endl;
+    }
     
     //---------------------------------
     

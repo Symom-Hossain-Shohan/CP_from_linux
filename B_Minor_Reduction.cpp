@@ -58,7 +58,44 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        string s;
+        cin >> s;
+        int n=s.size();
+        bool ok=true;
+        for(int i=n-1;i>=1;i--)
+        {
+            int sum=(s[i]-'0')+(s[i-1]-'0');
+            if(sum>9) 
+            {
+                for(int j=0;j<i-1;j++) cout << s[j];
+                cout << sum ;
+                for(int j=i+1;j<n;j++) cout << s[j];
+                ok=false;
+                break;
+            }
+        }
+        int mx=-1,ix=-1;
+        for(int i=n-1;i>=1;i--)
+        {
+            int sum=(s[i]-'0')+(s[i-1]-'0');
+            if(sum>mx)
+            {
+                mx=sum;
+                ix=i;
+            }
+        }
+        if(ok)
+        {
+            int sum=(s[0]-'0')+(s[1]-'0');
+            cout << sum;
+            for(int i=2;i<n;i++) cout << s[i];
+        }
+        cout << endl;
+    }
     
     //---------------------------------
     

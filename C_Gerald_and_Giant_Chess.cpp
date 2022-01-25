@@ -58,7 +58,35 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll h,w,n;
+    cin >> h >> w >> n;
+    int ar[h+1][w+1]={0};
+    ll ans=1;
+
+    for(int i=0;i<n;i++)
+    {
+        ll x,y;
+        cin >> x >> y;
+        ar[x][y]=2;
+    }
+    ar[1][1]=1;
+    for(int i=1;i<=h;i++)
+    {
+        for(int j=1;j<=w;j++)
+        {
+            if(ar[i][j]==1)
+            {
+                if(i==h and j==w) continue;
+                ll cnt=0;
+                if(j+1<=w and ar[i][j+1]!=2) cnt++,ar[i][j+1]=1;
+                if(i+1<=h and ar[i+1][j]!=2) cnt++,ar[i+1][j]=1;
+                if(cnt==0) ans/=2;
+                else ans=modMul(ans,cnt);
+                
+            }
+        }
+    }
+    if(ar[h][w]) cout << ans << endl;
     
     //---------------------------------
     

@@ -58,7 +58,26 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll n;
+    cin >> n;
+
+    vector<double> v(n);
+    for(auto &i: v) cin >> i;
+    srt(v);
+
+    vector<double> sum;
+    sum=v;
+    for(ll i=1;i<n;i++) sum[i]+=sum[i-1];
+    //cout << sum[n-1] << endl;
+    
+    double ans=1e18;
+    for(ll i=0;i<n;i++)
+    {
+        double x=v[i]/2.0;
+        double tm=x*n+sum[n-1]-sum[i]-(n-i-1)*v[i];
+        ans=min(ans,tm);
+    }
+    cout << setprecision(10) << fixed << ans/n<< endl;
     
     //---------------------------------
     

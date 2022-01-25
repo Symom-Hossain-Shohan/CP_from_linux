@@ -58,7 +58,40 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        ll n;
+        cin >> n;
+        vector<ll> a(n),b(n+1,0),c(n+1,0);
+        for(auto &i: a) cin >> i, b[i]++;
+        ll mex=0;
+        vector<ll> ans;
+        map<ll,ll> m;
+        for(int i=0;i<n;i++)
+        {
+            m[a[i]]++;
+            c[a[i]]++;
+            for(int j=mex;j<=n;j++)
+            {
+                if(m[j]==0)
+                {
+                    mex=j;
+                    break;
+                }
+            }
+            if(b[mex]-c[mex]<=0) 
+            {
+                ans.pb(mex);
+                mex=0;
+                m.clear();
+            }
+        }
+        cout << ans.size() << endl;
+        for(auto i: ans) cout << i << ' ';
+        cout << endl;
+    }
     
     //---------------------------------
     

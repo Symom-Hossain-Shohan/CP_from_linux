@@ -58,7 +58,15 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        string s;
+        cin >> s;
+        srt(s);
+        cout << s << endl;
+    }
     
     //---------------------------------
     

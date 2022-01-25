@@ -45,8 +45,14 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 }
 
 //code goes from here...
+vector<ll> adj[100005];
+vector<bool> visited(100005, false);
 
-
+void dfs(ll s)
+{
+    visited[s]=1;
+    for(auto child : adj[s]) if(!visited[child]) dfs(child);
+}
 
 int main()
 {
@@ -58,7 +64,25 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    //The main idea is number of connected component is one and the number of edges < number of nodes
+    ll n,m;
+    cin >> n >> m;
+    for(int i=0;i<m;i++)
+    {
+        ll u,v;
+        cin >> u >> v;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
+
+    ll cc =0;
+    for(int i=1;i<=n;i++)
+    {
+        if(!visited[i]) dfs(i),cc++;
+    }
+
+    if(cc==1 and m<n) cout << "YES\n";
+    else cout << "NO\n";
     
     //---------------------------------
     

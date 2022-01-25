@@ -51,15 +51,27 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 int main()
 {
 //#ifndef ONLINE_JUDGE
-    //freopen("input.txt", "r", stdin);
+    freopen("billboard.in", "r", stdin);
     
-    //freopen("output.txt", "w", stdout);
+    freopen("billboard.out", "w", stdout);
 //#endif
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
-    
+    ll b1[4];
+    ll b2[4];
+    ll c[4];
+    cin >> b1[0] >> b1[1] >> b1[2] >> b1[3];
+    cin >> b2[0] >> b2[1] >> b2[2] >> b2[3];
+    cin >> c[0] >> c[1] >> c[2] >> c[3];
+    ll area=(b1[2]-b1[0])*(b1[3]-b1[1])+(b2[2]-b2[0])*(b2[3]-b2[1]);
+    ll x=min(b1[2],c[2])-max(b1[0],c[0]);
+    ll y=min(b1[3],c[3])-max(b1[1],c[1]);
+    area-=(max(x,0ll)*max(y,0ll));
+    x=min(b2[2],c[2])-max(b2[0],c[0]);
+    y=min(b2[3],c[3])-max(b2[1],c[1]);
+    area-=(max(x,0ll)*max(y,0ll));
+    cout << area << endl;
     //---------------------------------
     
     return 0;

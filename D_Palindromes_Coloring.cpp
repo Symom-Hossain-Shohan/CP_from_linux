@@ -58,7 +58,32 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        ll n,k;
+        cin >> n >> k;
+        string s;
+        cin >> s;
+        srt(s);
+        map<char,ll> m;
+        for(int i=0;i<n;i++) m[s[i]]++;
+        ll pairs=0;
+        ll cnt=0;
+        for(auto i: m) 
+        {
+            pairs+=(i.second/2) ;
+            if(i.second%2) cnt++;
+        }
+        ll ans=(pairs/k)*2;
+        cnt+=(pairs%k)*2;
+        
+        //for(auto i: m) if(i.second) cnt++;
+        if(cnt>=k) ans++;
+        cout << max(1ll,ans) << endl;
+        //cout << ans << endl;
+    }
     
     //---------------------------------
     

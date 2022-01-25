@@ -45,8 +45,29 @@ ll ext_gcd(ll a, ll b, ll& x, ll& y) {
 }
 
 //code goes from here...
+vector<ll> adj[200005];
+vector<bool> visited(200005,false);
+map<pair<ll,ll>,ll> m;
 
+void dfs(int  s)
+{
+    visited[s]=true;
+    for(auto child: adj[s]) if(!visited[child]) dfs(child);
+}
 
+void dfs(int s, bool ok)
+{
+    visited[s]=true;
+    for(auto child: adj[s])
+    {
+        if(!visited[child])
+        {
+            if(ok) m[{child,s}]=2,m[{s,child}]=2;
+            else m[{child,s}]=3,m[{s,child}]=3;
+            dfs(child,!ok);
+        }
+    }
+}
 
 int main()
 {
@@ -58,7 +79,48 @@ int main()
 
     boost
     //---------------------------------
-    cout << -2/3 << endl;
+    ll tc;
+    cin >> tc;
+    while(tc--)
+    {
+        ll n;
+        cin >> n;
+        for(int i=1;i<=n;i++) adj[i].clear(),visited[i]=false;
+        vector<pair<ll,ll>> vv;
+        for(int i=1;i<n;i++)
+        {
+            ll u,v;
+            cin >> u >> v;
+            vv.pb({u,v});
+            adj[u].pb(v);
+            adj[v].pb(u);
+        }
+
+        bool ok=true;
+        for(int i=1;i<=n;i++) if(adj[i].size()>2) ok=false;
+        int cc=0;
+        for(int i=1;i<=n;i++)
+        {
+            if(visited[i]==false) dfs(i),cc++;
+        }
+        if(cc>1) ok=false;
+        if(!ok) cout << -1  << endl;
+        else
+        {
+            for(int i=1;i<=n;i++) visited[i]=false;
+            for(int i=1;i<=n;i++)
+            {
+                if(adj[i].size()==1)
+                {
+                    dfs(i,true);
+                    break;
+                }
+            }
+            for(int i=0;i<n-1;i++) cout << m[{vv[i].first,vv[i].second}] << ' ';
+            cout << endl;
+        }
+
+    }
     
     //---------------------------------
     
